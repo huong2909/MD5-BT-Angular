@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="col-5">
+    <form [formGroup]="register" (ngSubmit)="onSubmit()" novalidate >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <div
+          *ngIf="!email?.valid && (email?.dirty ||email?.touched)">
+          <div [hidden]="!email.errors.required">
+            <p style="color:red;">Email không được để trống</p>
+          </div>
+          <div [hidden]="!email.errors.email">
+            <p style="color:red;">Sai định dạng</p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <div
+          *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
+          <div [hidden]="!password.errors.required">
+            <p style="color:red;">Mật khẩu không được để trống</p>
+          </div>
+          <div [hidden]="!password.errors.minlength">
+            <p style="color:red;">Mật khẩu phải lớn hơn 8 ký tự</p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="confirm" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirm" formControlName="confirm" (change)="change()" pattern="{{password.value}}">
+        <div
+          *ngIf="!confirm?.valid && (confirm?.dirty ||confirm?.touched)">
+          <div [hidden]="!confirm.errors.required">
+            <p style="color:red;">Mật khẩu không được để trống</p>
+          </div>
+<!--          <div [hidden]="!age.errors.pattern">-->
+<!--            <p style="color:red;">Sai định dạng</p>-->
+<!--          </div>-->
+          <div [hidden]="isSame">
+            <p style="color:red;">Mật khẩu không khớp</p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <p>
+          <label for="country">Country </label>
+          <select id="country" name="country" formControlName = "country" [(ngModel)]="countryDefaul">
+            <option  *ngFor="let c of countryList" >{{c.name}}
+            </option>
+          </select>
+        </p>
+
+      </div>
+      <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="text" class="form-control" id="age" formControlName="age">
+        <div
+          *ngIf="!age?.valid && (age?.dirty ||age?.touched)">
+          <div [hidden]="!age.errors.required">
+            <p style="color:red;">Tuổi không được để trống</p>
+          </div>
+          <div [hidden]="!age.errors.min">
+            <p style="color:red;">Tuổi phải lớn hơn 18 tuổi</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+      <p>
+        <label for="gender">Gender </label>
+        <input type="radio" value="male" name="gender" formControlName = "gender"> Male
+        <input type="radio" value="female" id="gender" name="gender" formControlName = "gender"> Female
+      </p>
+        <div
+          *ngIf="!gender?.valid && (gender?.dirty ||gender?.touched)">
+          <div [hidden]="!gender.errors.required">
+            <p style="color:red;">Giới tính không được để trống</p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="number" class="form-control" id="phone" formControlName="phone">
+        <div
+          *ngIf="!phone?.valid && (phone?.dirty ||phone?.touched)">
+          <div [hidden]="!phone.errors.required">
+            <p style="color:red;">Số điện thoại không được để trống</p>
+          </div>
+<!--          <div [hidden]="!phone.errors.pattern">-->
+<!--            <p style="color:red;">Sai định dạng</p>-->
+<!--          </div>-->
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!register.valid">Submit</button>
+    </form>
+  </div>
+</div>
