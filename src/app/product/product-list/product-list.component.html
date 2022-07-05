@@ -1,0 +1,21 @@
+<h1>Danh sách sản phẩm</h1>
+<a routerLink="/product-create">Tạo mới</a>
+<div>
+  <h1>Demo</h1>
+  <table border="1px">
+    <thead>
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Price</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.productID}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
